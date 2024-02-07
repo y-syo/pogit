@@ -1,6 +1,6 @@
 # sg
 
-> 🌸 a git wrapper for cute commits
+> 🌸 a git wrapper for cute commits  
 > *by [y-syo](https://y-syo.me)/[mmoussou](https://profile.intra.42.fr/users/mmoussou)*
 
 ## what is this all about ?
