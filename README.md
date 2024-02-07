@@ -11,6 +11,15 @@ It also helps you working with multiples remotes at once.
 
 ## features
 
+  - cool emojis and prefix to show what's the commit about:
+    feature:  [✨] feat(\_):
+    clean:    [🗑️] clean(\_):
+    init:     [🎉] init(\_):
+    norm:     [✏️] norm(\_):
+    wip:      [🏗️] wip(\_):
+    fix:      [🔨] fix(\_):
+    doc:      [📝] doc(\_):
+
   - a commit command, that will commit and add every files (be careful, for the moment this is a forced ``git add .``, this is not made for specific files commits)
   - you can push the repo, it will push on all the remotes availables
   - helpful help messages for the commands
