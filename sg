@@ -58,15 +58,15 @@ class Help:
   {Colors.ITALIC}sg [COMMAND] ...{Colors.END}
 
 {Colors.BLUE}OPTIONS:{Colors.END}
-  -h, --help        show this help message and exit.
-  -v, --version     print version.
+  {Colors.GREEN}-h, --help{Colors.END}        show this help message and exit.
+  {Colors.GREEN}-v, --version{Colors.END}     print version.
 
 {Colors.BLUE}COMMANDS:{Colors.END}
-  c/commit          Commit changes to the git repo.
-  r/remote          Manage the remotes of the repository.
-  p/push            Push the current project to all of the remotes.
-  i/init            Initialize a repository in the current folder.
-  h/help            Get help on a command.
+  {Colors.GREEN}c/commit{Colors.END}          Commit changes to the git repo.
+  {Colors.GREEN}r/remote{Colors.END}          Manage the remotes of the repository.
+  {Colors.GREEN}p/push{Colors.END}            Push the current project to all of the remotes.
+  {Colors.GREEN}i/init{Colors.END}            Initialize a repository in the current folder.
+  {Colors.GREEN}h/help{Colors.END}            Get help on a command.
 '''
     push = f'''{Colors.GREEN}sg remote push{Colors.END}
 {Colors.BLUE}USAGE:{Colors.END}
@@ -86,13 +86,13 @@ class Help:
 {Colors.BLUE}TYPE:{Colors.END}
   what's this commit about.
 
-    feature:  [✨] feat(_):
-    clean:    [🗑️] clean(_):
-    init:     [🎉] init(_):
-    norm:     [✏️] norm(_):
-    wip:      [🏗️] wip(_):
-    fix:      [🔨] fix(_):
-    doc:      [📝] doc(_):
+    {Colors.GREEN}feature:{Colors.END}  [✨] feat(_):
+    {Colors.GREEN}clean:{Colors.END}    [🗑️] clean(_):
+    {Colors.GREEN}init:{Colors.END}     [🎉] init(_):
+    {Colors.GREEN}norm:{Colors.END}     [✏️] norm(_):
+    {Colors.GREEN}wip:{Colors.END}      [🏗️] wip(_):
+    {Colors.GREEN}fix:{Colors.END}      [🔨] fix(_):
+    {Colors.GREEN}doc:{Colors.END}      [📝] doc(_):
 
 {Colors.BLUE}DENOMINATOR:{Colors.END}
   Which files/subject is this commit about.
@@ -107,9 +107,9 @@ class Help:
   sg r [SUBCOMMAND] ...{Colors.END}
 
 {Colors.BLUE}SUBCOMMANDS:{Colors.END}
-  add               Add a remote to the repo.
-  rm/remove         Remove a remote from the repo.
-  list              List all active remotes in the repo.
+  {Colors.GREEN}add{Colors.END}               Add a remote to the repo.
+  {Colors.GREEN}rm/remove{Colors.END}         Remove a remote from the repo.
+  {Colors.GREEN}list{Colors.END}              List all active remotes in the repo.
 '''
     class Remote:
         r_add = f'''{Colors.GREEN}sg remote add{Colors.END}
