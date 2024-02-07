@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    sg                                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/07 01:04:57 by mmoussou          #+#    #+#              #
+#    Updated: 2024/02/07 01:14:05 by mmoussou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+__author__ = "y-syo"
+__version__ = "0.0.1"
+__license__ = "WTFPL"
+
+import sys
+
+class Help:
+    sg = '''sg
+
+USAGE:
+  sg [COMMAND] ...
+
+OPTIONS:
+  -h, --help        show this help message and exit.
+  -v, --version     print version.
+
+COMMANDS:
+  c/commit          Commit changes to the git repo.
+  r/remote          Manage the remotes of the repository.
+  p/push            Push the current project to all of the remotes.
+  i/init            Initialize a repository in the current folder.
+'''
+    commit = '''sg commit
+
+USAGE:
+  sg commit <type> <(optional)denominator> <message>
+  sg c <type> <(optional)denominator> <message>
+
+
+TYPE:
+  what's this commit about.
+
+    feature:  [✨] feat(_):
+    clean:    [🗑️] clean(_):
+    init:     [🎉] init(_):
+    norm:     [✏️] norm(_):
+    wip:      [🏗️] wip(_):
+    fix:      [🔨] fix(_):
+    doc:      [📝] doc(_):
+
+DENOMINATOR:
+  Which files/subject is this commit about.
+
+MESSAGE:
+  More precise description of the commit.
+'''
+    remote = '''sg remote
+
+USAGE:
+  sg remote [SUBCOMMAND] ...
+  sg r [SUBCOMMAND] ...
+
+SUBCOMMANDS:
+  add               Add a remote to the repo.
+  rm/remove         Remove a remote from the repo.
+  list              List all active remotes in the repo.
+'''
+
+COMMANDS = ["commit", "remote", "push", "init", "c", "r", "p", "i"]
+
+def main():
+    if (len(sys.argv) < 2 or sys.argv[1] == '-h' or sys.argv[1] == '--help' or sys.argv[1] not in COMMANDS):
+        print(Help.gyt)
+        sys.exit(0)
+    command = sys.argv[1]
+    if (sys.argv[1] == '-v' or sys.argv[1] == '--version'):
+        print("gyt version: " + __version__)
+        sys.exit(0)
+
+
+if __name__ == '__main__':
+    main()
