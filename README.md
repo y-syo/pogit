@@ -13,11 +13,11 @@ It also helps you working with multiples remotes at once.
 
   - a commit command, that will commit and add every files (be careful, for the moment this is a forced ``git add .``, this is not made for specific files commits)
   - you can push the repo, it will push on all the remotes availables
+  - helpful help messages for the commands
 
 upcomming features:
-  - remote managing
+  - remote managing (why tho ? i don't see any addition i can give that the basic thing don't have)
   - init command to initialize a git repo
-  - helpful help messages for the commands
   - add support for subdirectories of the repo
 
 ## install
