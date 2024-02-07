@@ -11,11 +11,18 @@
 #                                                                              #
 # **************************************************************************** #
 
+# ------------ credits ------------
+
 __author__ = "y-syo"
 __version__ = "0.0.1"
 __license__ = "WTFPL"
 
+# ------------ modules ------------
+
 import sys
+import os
+
+# ------------ help messages ------------
 
 class Help:
     sg = '''sg
@@ -69,16 +76,82 @@ SUBCOMMANDS:
   list              List all active remotes in the repo.
 '''
 
+# ------------ global variables ------------
+
 COMMANDS = ["commit", "remote", "push", "init", "c", "r", "p", "i"]
 
+C_TYPES = {"feature": "[✨] feat",
+           "clean": "[🗑️] clean",
+           "init": "[🎉] init",
+           "norm": "[✏️] norm",
+           "wip": "[🏗️] wip",
+           "fix": "[🔨] fix",
+           "doc": "[📝] doc"}
+
+
+# ------------ commands functions ------------
+
+def commit():
+    if (len(sys.argv) < 4 or len(sys.argv) > 5):
+        print(Help.commit)
+        exit(0)
+    c_type = sys.argv[2]
+    c_denom = ""
+    c_msg = ""
+    c_final = ""
+    if (len(sys.argv) == 4):
+        c_msg = sys.argv[3]
+    else:
+        c_denom = sys.argv[3]
+        c_msg = sys.argv[4]
+    if (c_type not in C_TYPES):
+        print("Error: type is not valid.")
+        exit(0)
+    c_final += C_TYPES[c_type]
+    if (c_denom):
+        c_final += ("(" + c_denom + ")")
+    c_final += (": " + c_msg)
+    os.system("git add .") # temporary, will change later for specific files commit, with a -f/--files flag
+    os.system('git commit -m "' + c_final + '"')
+
+
+def push():
+    if (len(sys.argv) > 3):
+        print("Error: Bad usage.")
+        exit(0)
+    if (len(sys.argv) == 3):
+        branch = sys.argv[2]
+    else:
+        branch = "master"
+    remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
+    for remote in remotes:
+        os.system("git push " + remote + " " + branch)
+
+
+# ------------ main function ------------
+
 def main():
+    if (".git" not in os.listdir(os.getcwd())):
+        print("Unsupported location, are you sure you're at the root of your repository ?")
+        exit(0)
     if (len(sys.argv) < 2 or sys.argv[1] == '-h' or sys.argv[1] == '--help' or sys.argv[1] not in COMMANDS):
-        print(Help.gyt)
+        print(Help.sg)
         sys.exit(0)
-    command = sys.argv[1]
-    if (sys.argv[1] == '-v' or sys.argv[1] == '--version'):
-        print("gyt version: " + __version__)
+    arg = sys.argv[1]
+    if (arg == '-v' or arg == '--version'):
+        print("sg version: " + __version__)
         sys.exit(0)
+    match (COMMANDS.index(arg) % (len(COMMANDS) / 2)):
+        case 0:
+            commit()
+        case 1:
+            remote()
+        case 2:
+            push()
+        case 3:
+            init()
+        case _:
+            print(Help.sg)
 
 
 if __name__ == '__main__':
