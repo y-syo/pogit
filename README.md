@@ -1,11 +1,11 @@
-# sg
+# pogit
 
 > 🌸 a git wrapper for cute commits  
 > *by [y-syo](https://y-syo.me)/[mmoussou](https://profile.intra.42.fr/users/mmoussou)*
 
 ## what is this all about ?
 
-``sg`` is a git wrapper that aims for prettier and more easily readable commit messages.
+``pogit`` is a git wrapper that aims for prettier and more easily readable commit messages.
 
 It also helps you working with multiples remotes at once.
 
@@ -40,7 +40,7 @@ upcomming features:
 
 I'll make an installer later.
 
-For the moment, move the ``sg`` somewhere that is in your ``PATH``, or add the folder where ``sg`` is located in your ``PATH``.
+For the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
 
 ## license
 
