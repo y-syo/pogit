@@ -70,7 +70,7 @@ class Help:
 '''
     push = f'''{Colors.GREEN}sg remote push{Colors.END}
 {Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}sg remote push{Colors.END}
+  {Colors.ITALIC}sg remote push <branch>{Colors.END}
 '''
     init = f'''{Colors.GREEN}sg remote init{Colors.END}
 
