@@ -86,7 +86,7 @@ class Help:
 {Colors.BLUE}TYPE:{Colors.END}
   what's this commit about.
 
-    {Colors.GREEN}feature:{Colors.END}  [✨] feat(_):
+    {Colors.GREEN}feature/feat:{Colors.END}  [✨] feat(_):
     {Colors.GREEN}clean:{Colors.END}    [🗑️] clean(_):
     {Colors.GREEN}init:{Colors.END}     [🎉] init(_):
     {Colors.GREEN}norm:{Colors.END}     [✏️] norm(_):
@@ -144,6 +144,7 @@ class Help:
 COMMANDS = ["commit", "remote", "push", "init", "help", "c", "r", "p", "i", "h"]
 
 C_TYPES = {"feature": "[✨] feat",
+           "feat": "[✨] feat",
            "clean": "[🗑️] clean",
            "init": "[🎉] init",
            "norm": "[✏️] norm",
