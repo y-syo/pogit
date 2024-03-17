@@ -188,9 +188,16 @@ def remote_remove():
 
 
 def remote_list():
-    remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
-    for remote in remotes:
-        print(remote)
+    #remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
+    #for remote in remotes:
+    #    print(remote)
+    file = open(os.getcwd() + "/.git/config")
+    remotes=[]
+    for line in file:
+        if "[remote" in line:
+            remotes += line[9:-3]
+            print(line[9:-3])
+    file.close()
 
 
 
