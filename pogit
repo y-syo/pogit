@@ -195,9 +195,15 @@ def remote_list():
     remotes=[]
     for line in file:
         if "[remote" in line:
-            remotes += line[9:-3]
-            print(line[9:-3])
+            remotes.append(line[9:-3])
     file.close()
+    return (remotes)
+
+
+def print_remote_list():
+    remotes = remote_list()
+    for remote in remotes:
+        print(remote)
 
 
 
@@ -214,7 +220,7 @@ def remote():
         case "remove":
             remote_remove()
         case "list":
-            remote_list()
+            print_remote_list()
         case _:
             print(Help.remote)
 
@@ -227,7 +233,7 @@ def push():
         branch = sys.argv[2]
     else:
         branch = "master"
-    remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
+    remotes = remote_list()
     for remote in remotes:
         os.system("git push " + remote + " " + branch)
 
