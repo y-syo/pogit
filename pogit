@@ -86,19 +86,20 @@ class Help:
 {Colors.BLUE}TYPE:{Colors.END}
   what's this commit about.
 
-    {Colors.GREEN}feature/feat:{Colors.END}  [✨] feat(_):
-    {Colors.GREEN}clean:{Colors.END}    [🗑️] clean(_):
-    {Colors.GREEN}init:{Colors.END}     [🎉] init(_):
-    {Colors.GREEN}norm:{Colors.END}     [✏️] norm(_):
-    {Colors.GREEN}wip:{Colors.END}      [🏗️] wip(_):
-    {Colors.GREEN}fix:{Colors.END}      [🔨] fix(_):
-    {Colors.GREEN}doc:{Colors.END}      [📝] doc(_):
+    {Colors.GREEN}feature/feat:{Colors.END}  [✨] feat(_): added a very cool feature !
+    {Colors.GREEN}clean:{Colors.END}         [🗑️] clean(_): cleaned project.
+    {Colors.GREEN}init:{Colors.END}          [🎉] init(_): hello world !
+    {Colors.GREEN}norm:{Colors.END}          [✏️] norm(_): normed project.
+    {Colors.GREEN}wip:{Colors.END}           [🏗️] wip(_): testing things, might broke.
+    {Colors.GREEN}fix:{Colors.END}           [🔨] fix(_): fixed some things.
+    {Colors.GREEN}doc:{Colors.END}           [📝] doc(_): added documentation.
 
 {Colors.BLUE}DENOMINATOR:{Colors.END}
   Which files/subject is this commit about.
 
 {Colors.BLUE}MESSAGE:{Colors.END}
   More precise description of the commit.
+  If no message is given, there will be a default message.
 '''
     remote = f'''{Colors.GREEN}pogit remote{Colors.END}
 
@@ -152,18 +153,29 @@ C_TYPES = {"feature": "[✨] feat",
            "fix": "[🔨] fix",
            "doc": "[📝] doc"}
 
+default_commit_msg = {"feature": "added a very cool feature !",
+                      "feat": "added a very cool feature !",
+                      "clean" : "cleaned project.",
+                      "init" : "hello world !",
+                      "norm" : "normed project.",
+                      "wip" : "testing things, might broke.",
+                      "fix" : "fixed some things.",
+                      "doc" : "added documentation."}
+
 
 # ------------ commands functions ------------
 
 def commit():
-    if (len(sys.argv) < 4 or len(sys.argv) > 5):
+    if (len(sys.argv) < 3 or len(sys.argv) > 5):
         print(Help.commit)
         exit(0)
     c_type = sys.argv[2]
     c_denom = ""
     c_msg = ""
     c_final = ""
-    if (len(sys.argv) == 4):
+    if (len(sys.argv) == 3):
+        c_msg = default_commit_msg[c_type]
+    elif (len(sys.argv) == 4):
         c_msg = sys.argv[3]
     else:
         c_denom = sys.argv[3]
