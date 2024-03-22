@@ -14,7 +14,7 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -141,7 +141,7 @@ class Help:
 
 # ------------ global variables ------------
 
-COMMANDS = ["commit", "remote", "push", "init", "help", "c", "r", "p", "i", "h"]
+COMMANDS = ["commit", "remote", "push", "init", "help", "c", "r", "p", "i", "h", "-v", "--version"]
 
 C_TYPES = {"feature": "[✨] feat",
            "feat": "[✨] feat",
