@@ -141,7 +141,7 @@ class Help:
 
 # ------------ global variables ------------
 
-COMMANDS = ["commit", "remote", "push", "init", "help", "c", "r", "p", "i", "h", "-v", "--version"]
+COMMANDS = ["commit", "remote", "push", "init", "help", "--version", "c", "r", "p", "i", "h", "-v"]
 
 C_TYPES = {"feature": "[✨] feat",
            "feat": "[✨] feat",
