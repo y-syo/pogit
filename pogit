@@ -65,17 +65,11 @@ class Help:
   {Colors.GREEN}c/commit{Colors.END}          Commit changes to the git repo.
   {Colors.GREEN}r/remote{Colors.END}          Manage the remotes of the repository.
   {Colors.GREEN}p/push{Colors.END}            Push the current project to all of the remotes.
-  {Colors.GREEN}i/init{Colors.END}            Initialize a repository in the current folder.
   {Colors.GREEN}h/help{Colors.END}            Get help on a command.
 '''
     push = f'''{Colors.GREEN}pogit remote push{Colors.END}
 {Colors.BLUE}USAGE:{Colors.END}
   {Colors.ITALIC}pogit remote push <branch>{Colors.END}
-'''
-    init = f'''{Colors.GREEN}pogit remote init{Colors.END}
-
-{Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit remote init{Colors.END}
 '''
     commit = f'''{Colors.GREEN}pogit commit{Colors.END}
 
@@ -142,7 +136,7 @@ class Help:
 
 # ------------ global variables ------------
 
-COMMANDS = ["commit", "remote", "push", "init", "help", "--version", "c", "r", "p", "i", "h", "-v"]
+COMMANDS = ["commit", "remote", "push", "help", "--version", "c", "r", "p", "h", "-v"]
 
 C_TYPES = {"feature": "[✨] feat",
            "feat": "[✨] feat",
@@ -250,10 +244,6 @@ def push():
         os.system("git push " + remote + " " + branch)
 
 
-def init():
-    os.system("git init")
-
-
 def man():
     if (len(sys.argv) != 3 or sys.argv[2] not in COMMANDS):
         print(Help.pogit)
@@ -292,8 +282,6 @@ def main():
         case 2:
             push()
         case 3:
-            init()
-        case 4:
             man()
         case _:
             print(Help.pogit)

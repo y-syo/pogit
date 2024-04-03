@@ -7,33 +7,33 @@
 
 ``pogit`` is a git wrapper that aims for prettier and more easily readable commit messages.
 
-It also helps you working with multiples remotes at once.
+it also helps you working with multiples remotes at once.
 
 ## features
 
   - cool emojis and prefix to show what's the commit about:
 
-    feature:  [✨] feat(\_):
+    feature:  [✨] feat(\_): added a very cool feature !
 
-    clean:    [🗑️] clean(\_):
+    clean:    [🗑️] clean(\_): cleaned project.
 
-    init:     [🎉] init(\_):
+    init:     [🎉] init(\_): hello world !
 
-    norm:     [✏️] norm(\_):
+    norm:     [✏️] norm(\_): normed project.
 
-    wip:      [🏗️] wip(\_):
+    wip:      [🏗️] wip(\_): testing things, might broke.
 
-    fix:      [🔨] fix(\_):
+    fix:      [🔨] fix(\_): fixed some things.
 
-    doc:      [📝] doc(\_):    
+    doc:      [📝] doc(\_): added documentation.
 
   - a commit command, that will commit and add every files (be careful, for the moment this is a forced ``git add .``, this is not made for specific files commits)
   - you can push the repo, it will push on all the remotes availables
   - helpful help messages for the commands
 
 upcomming features:
-  - remote managing (why tho ? i don't see any addition i can give that the basic thing don't have)
-  - init command to initialize a git repo
+  - flagging on the commit command for choosing specific files to add (will also possibly use a cli for that) and the denominator thing (so the one-argument only message will disapear)
+  - remote managing
   - add support for subdirectories of the repo
 
 ## install
