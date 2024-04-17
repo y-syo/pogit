@@ -74,7 +74,7 @@ class Help:
     commit = f'''{Colors.GREEN}pogit commit{Colors.END}
 
 {Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit commit <type> <(optional)denominator> <message>
+  {Colors.ITALIC}pogit commit <message> -f <files> -d <denominator>
   pogit c <type> <(optional)denominator> <message>{Colors.END}
 
 {Colors.BLUE}TYPE:{Colors.END}
@@ -160,20 +160,29 @@ default_commit_msg = {"feature": "added a very cool feature !",
 # ------------ commands functions ------------
 
 def commit():
-    if (len(sys.argv) < 3 or len(sys.argv) > 5):
+    if len(sys.argv) < 3 or sys.argv[2] not in C_TYPES:
         print(Help.commit)
         exit(0)
     c_type = sys.argv[2]
     c_denom = ""
     c_msg = ""
     c_final = ""
-    if (len(sys.argv) == 3):
+    files = "."
+    args = sys.argv
+    if "-f" in args:
+        files = ' '.join(args[args.index("-f") + 1].split(','))
+        args.pop(args.index("-f") + 1)
+        args.pop(args.index("-f"))
+    if "-d" in args:
+        c_denom = args[args.index("-d") + 1]
+        args.pop(args.index("-d") + 1)
+        args.pop(args.index("-d"))
+
+    if (len(args) == 3):
         c_msg = default_commit_msg[c_type]
-    elif (len(sys.argv) == 4):
-        c_msg = sys.argv[3]
     else:
-        c_denom = sys.argv[3]
-        c_msg = sys.argv[4]
+        c_msg = ' '.join(args[3:])
+
     if (c_type not in C_TYPES):
         print("Error: type is not valid.")
         exit(0)
@@ -181,8 +190,9 @@ def commit():
     if (c_denom):
         c_final += ("(" + c_denom + ")")
     c_final += (": " + c_msg)
-    os.system("git add .") # temporary, will change later for specific files commit, with a -f/--files flag
-    os.system('git commit -m "' + c_final + '"')
+    os.system(f'git add {files}')
+    print(f'git commit -m "{c_final}"')
+    os.system(f'git commit -m "{c_final}"')
 
 
 def remote_add():
