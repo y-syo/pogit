@@ -80,13 +80,13 @@ class Help:
 {Colors.BLUE}TYPE:{Colors.END}
   what's this commit about.
 
-    {Colors.GREEN}feature/feat:{Colors.END}  [✨] feat(_): added a very cool feature !
-    {Colors.GREEN}clean:{Colors.END}         [🗑️] clean(_): cleaned project.
-    {Colors.GREEN}init:{Colors.END}          [🎉] init(_): hello world !
-    {Colors.GREEN}norm:{Colors.END}          [✏️] norm(_): normed project.
-    {Colors.GREEN}wip:{Colors.END}           [🏗️] wip(_): testing things, might broke.
-    {Colors.GREEN}fix:{Colors.END}           [🔨] fix(_): fixed some things.
-    {Colors.GREEN}doc:{Colors.END}           [📝] doc(_): added documentation.
+    {Colors.GREEN}feature/feat:{Colors.END}  「✨」 feat(_): added a very cool feature !
+    {Colors.GREEN}clean:{Colors.END}         「🗑️」 clean(_): cleaned project.
+    {Colors.GREEN}init:{Colors.END}          「🎉」 init(_): hello world !
+    {Colors.GREEN}norm:{Colors.END}          「✏️」 norm(_): normed project.
+    {Colors.GREEN}wip:{Colors.END}           「🏗️」 wip(_): testing things, might broke.
+    {Colors.GREEN}fix:{Colors.END}           「🔨」 fix(_): fixed some things.
+    {Colors.GREEN}doc:{Colors.END}           「📝」 doc(_): added documentation.
 
 {Colors.BLUE}DENOMINATOR:{Colors.END}
   Which files/subject is this commit about.
@@ -138,14 +138,14 @@ class Help:
 
 COMMANDS = ["commit", "remote", "push", "help", "--version", "c", "r", "p", "h", "-v"]
 
-C_TYPES = {"feature": "[✨] feat",
-           "feat": "[✨] feat",
-           "clean": "[🗑️] clean",
-           "init": "[🎉] init",
-           "norm": "[✏️] norm",
-           "wip": "[🏗️] wip",
-           "fix": "[🔨] fix",
-           "doc": "[📝] doc"}
+C_TYPES = {"feature": "「✨」 feat",
+           "feat": "「✨」 feat",
+           "clean": "「🗑️」 clean",
+           "init": "「🎉」 init",
+           "norm": "「✏️」 norm",
+           "wip": "「🏗️」 wip",
+           "fix": "「🔨」 fix",
+           "doc": "「📝」 doc"}
 
 default_commit_msg = {"feature": "added a very cool feature !",
                       "feat": "added a very cool feature !",
@@ -190,8 +190,9 @@ def commit():
     if (c_denom):
         c_final += ("(" + c_denom + ")")
     c_final += (": " + c_msg)
+    #print(f'git add {files}')
     os.system(f'git add {files}')
-    print(f'git commit -m "{c_final}"')
+    #print(f'git commit -m "{c_final}"')
     os.system(f'git commit -m "{c_final}"')
 
 
