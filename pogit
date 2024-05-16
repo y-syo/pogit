@@ -167,7 +167,7 @@ def commit():
     c_denom = ""
     c_msg = ""
     c_final = ""
-    files = "."
+    files = ""
     args = sys.argv
     if "-f" in args:
         files = ' '.join(args[args.index("-f") + 1].split(','))
@@ -190,8 +190,9 @@ def commit():
     if (c_denom):
         c_final += ("(" + c_denom + ")")
     c_final += (": " + c_msg)
-    #print(f'git add {files}')
-    os.system(f'git add {files}')
+    if files:
+        #print(f'git add {files}')
+        os.system(f'git add {files}')
     #print(f'git commit -m "{c_final}"')
     os.system(f'git commit -m "{c_final}"')
 
