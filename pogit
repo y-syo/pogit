@@ -14,7 +14,7 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.0.2"
+__version__ = "0.4.0"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -88,8 +88,9 @@ class Help:
     {Colors.GREEN}fix:{Colors.END}           「🔨」 fix(_): fixed some things.
     {Colors.GREEN}doc:{Colors.END}           「📝」 doc(_): added documentation.
 
-{Colors.BLUE}DENOMINATOR:{Colors.END}
-  Which files/subject is this commit about.
+{Colors.BLUE}OPTIONS:{Colors.END}
+  {Colors.GREEN}-f <files>{Colors.END}       which files should be inclued with the commit, by default, nothing will be staged.
+  {Colors.GREEN}-d <denominator>{Colors.END} a prefix for the commit to point out what's the subject of the commit.
 
 {Colors.BLUE}MESSAGE:{Colors.END}
   More precise description of the commit.
