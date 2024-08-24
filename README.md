@@ -13,32 +13,34 @@ it also helps you working with multiples remotes at once.
 
   - cool emojis and prefix to show what's the commit about:
 
-    feature:  [✨] feat(\_): added a very cool feature !
+    feature:  「✨」 feat(\_): added a very cool feature !
 
-    clean:    [🗑️] clean(\_): cleaned project.
+    clean:    「🗑️」 clean(\_): cleaned project.
 
-    init:     [🎉] init(\_): hello world !
+    init:     「🎉」 init(\_): hello world !
 
-    norm:     [✏️] norm(\_): normed project.
+    norm:     「✏️」 norm(\_): normed project.
 
-    wip:      [🏗️] wip(\_): testing things, might broke.
+    test:     「🚧」 test(\_): testing things, might broke.
 
-    fix:      [🔨] fix(\_): fixed some things.
+    wip:      「🏗️」 wip(\_): work in progress, not done yet.
 
-    doc:      [📝] doc(\_): added documentation.
+    fix:      「🔨」 fix(\_): fixed some things.
 
-  - a commit command, that will commit and add every files (be careful, for the moment this is a forced ``git add .``, this is not made for specific files commits)
-  - you can push the repo, it will push on all the remotes availables
-  - helpful help messages for the commands
+    doc:      「📝」 doc(\_): added documentation.
+
+  - push to multiple remotes easily !
+
+  - 
 
 upcomming features:
-  - flagging on the commit command for choosing specific files to add (will also possibly use a cli for that) and the denominator thing (so the one-argument only message will disapear)
+  - an optional config file to change the formatting and tweak some future options like a norm check
+  - a 42norm checking that puts a warning flag when you commit not-normed code
   - remote managing
-  - add support for subdirectories of the repo
 
 ## install
 
-I'll make an installer later.
+I'll make an installer later (maybe (probably not i'm too lazy hehe (i love parenthesis))).
 
 For the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
 

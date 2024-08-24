@@ -14,7 +14,7 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -97,48 +97,10 @@ class Help:
   More precise description of the commit.
   If no message is given, there will be a default message.
 '''
-    remote = f'''{Colors.GREEN}pogit remote{Colors.END}
-
-{Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit remote [SUBCOMMAND] ...
-  pogit r [SUBCOMMAND] ...{Colors.END}
-
-{Colors.BLUE}SUBCOMMANDS:{Colors.END}
-  {Colors.GREEN}add{Colors.END}               Add a remote to the repo.
-  {Colors.GREEN}rm/remove{Colors.END}         Remove a remote from the repo.
-  {Colors.GREEN}list{Colors.END}              List all active remotes in the repo.
-'''
-    class Remote:
-        r_add = f'''{Colors.GREEN}pogit remote add{Colors.END}
-
-{Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit remote add <name> <url>{Colors.END}
-
-{Colors.BLUE}NAME:{Colors.END}
-  name of the remote.
-{Colors.BLUE}URL:{Colors.END}
-  url of the remote.
-'''
-        r_remove = f'''{Colors.GREEN}pogit remote rm{Colors.END}
-
-{Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit remote rm <name>{Colors.END}
-
-{Colors.BLUE}DESCRIPTION:{Colors.END}
-  Remove a remote from the repo.
-
-{Colors.BLUE}NAME:{Colors.END}
-  name of the remote to delete.
-'''
-        r_list = f'''{Colors.GREEN}pogit remote list{Colors.END}
-
-{Colors.BLUE}USAGE:{Colors.END}
-  {Colors.ITALIC}pogit remote list{Colors.END}
-'''
 
 # ------------ global variables ------------
 
-COMMANDS = ["commit", "remote", "push", "help", "--version", "c", "r", "p", "h", "-v"]
+COMMANDS = ["commit", "push", "help", "--version", "c", "p", "h", "-v"]
 
 C_TYPES = {"feature": "「✨」 feat",
            "feat": "「✨」 feat",
@@ -201,51 +163,24 @@ def commit():
     os.system(f'git commit -m "{c_final}"')
 
 
-def remote_add():
-    exit(0)
-
-
-def remote_remove():
-    exit(0)
-
+def get_git_repo(dir):
+    while (dir != "/"):
+        if (".git" in os.listdir(dir)):
+            return dir
+        os.chdir('..')
+        dir = os.getcwd()
 
 def remote_list():
     #remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
     #for remote in remotes:
     #    print(remote)
-    file = open(os.getcwd() + "/.git/config")
+    file = open(get_git_repo(os.getcwd()) + "/.git/config")
     remotes=[]
     for line in file:
         if "[remote" in line:
             remotes.append(line[9:-3])
     file.close()
     return (remotes)
-
-
-def print_remote_list():
-    remotes = remote_list()
-    for remote in remotes:
-        print(remote)
-
-
-
-def remote():
-    if (len(sys.argv) < 3):
-        print(Help.remote)
-        exit(0)
-    command = sys.argv[2]
-    match (command):
-        case "add":
-            remote_add()
-        case "rm":
-            remote_remove()
-        case "remove":
-            remote_remove()
-        case "list":
-            print_remote_list()
-        case _:
-            print(Help.remote)
-
 
 def push():
     if (len(sys.argv) > 3):
@@ -268,10 +203,8 @@ def man():
         case 0:
             print(Help.commit)
         case 1:
-            print(Help.remote)
-        case 2:
             print(Help.push)
-        case 3:
+        case 2:
             print(Help.init)
         case _:
             print(Help.pogit)
@@ -294,7 +227,7 @@ def main():
         sys.exit(0)
     arg = sys.argv[1]
     if (arg == '-v' or arg == '--version'):
-        print("pogit version: " + __version__)
+        print("pogit v" + __version__)
         sys.exit(0)
     #if (".git" not in os.listdir(os.getcwd())):
     if not check_git_repo(os.getcwd()):
