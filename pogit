@@ -84,7 +84,8 @@ class Help:
     {Colors.GREEN}clean:{Colors.END}         「🗑️」 clean(_): cleaned project.
     {Colors.GREEN}init:{Colors.END}          「🎉」 init(_): hello world !
     {Colors.GREEN}norm:{Colors.END}          「✏️」 norm(_): normed project.
-    {Colors.GREEN}wip:{Colors.END}           「🏗️」 wip(_): testing things, might broke.
+    {Colors.GREEN}test:{Colors.END}          「🚧」 test(_): testing things, might broke.
+    {Colors.GREEN}wip:{Colors.END}           「🏗️」 wip(_): work in progress, not done yet.
     {Colors.GREEN}fix:{Colors.END}           「🔨」 fix(_): fixed some things.
     {Colors.GREEN}doc:{Colors.END}           「📝」 doc(_): added documentation.
 
@@ -144,6 +145,7 @@ C_TYPES = {"feature": "「✨」 feat",
            "clean": "「🗑️」 clean",
            "init": "「🎉」 init",
            "norm": "「✏️」 norm",
+           "test": "「🚧」 test",
            "wip": "「🏗️」 wip",
            "fix": "「🔨」 fix",
            "doc": "「📝」 doc"}
@@ -153,7 +155,8 @@ default_commit_msg = {"feature": "added a very cool feature !",
                       "clean" : "cleaned project.",
                       "init" : "hello world !",
                       "norm" : "normed project.",
-                      "wip" : "testing things, might broke.",
+                      "test" : "testing things, might broke.",
+                      "wip" : "work in progress, not done yet.",
                       "fix" : "fixed some things.",
                       "doc" : "added documentation."}
 
@@ -192,10 +195,10 @@ def commit():
         c_final += ("(" + c_denom + ")")
     c_final += (": " + c_msg)
     if files:
-        print(f'git add {files}')
-        #os.system(f'git add {files}')
-    print(f'git commit -m "{c_final}"')
-    #os.system(f'git commit -m "{c_final}"')
+        #print(f'git add {files}')
+        os.system(f'git add {files}')
+    #print(f'git commit -m "{c_final}"')
+    os.system(f'git commit -m "{c_final}"')
 
 
 def remote_add():
@@ -293,8 +296,9 @@ def main():
     if (arg == '-v' or arg == '--version'):
         print("pogit version: " + __version__)
         sys.exit(0)
-    if (".git" not in os.listdir(os.getcwd())):
-        print("Unsupported location, are you sure you're at the root of your repository ?")
+    #if (".git" not in os.listdir(os.getcwd())):
+    if not check_git_repo(os.getcwd()):
+        print(f"{Colors.RED}are you sure you're in a git repository ?{Colors.END}")
         exit(0)
     match (COMMANDS.index(arg) % (len(COMMANDS) / 2)):
         case 0:
