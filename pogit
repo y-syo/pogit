@@ -210,6 +210,21 @@ def man():
             print(Help.pogit)
 
 
+# ------------ config function ------------
+
+def get_user_conf():
+    conf_path = os.environ.get('XDG_CONFIG_HOME')
+    if conf_path == None:
+        conf_path = os.environ.get('HOME') + "/.config"
+    conf_dir = os.open(conf_path, os.O_RDONLY)
+    if "pogit" not in os.listdir(conf_dir):
+        return
+    os.close(conf_dir)
+    conf_file = open(conf_path + '/pogit/pogit.conf')
+    for line in conf_file:
+        print(line)
+
+
 # ------------ main function ------------
 
 def check_git_repo(dir):
@@ -219,7 +234,7 @@ def check_git_repo(dir):
         os.chdir('..')
         dir = os.getcwd()
     return False
-        
+
 
 def main():
     if (len(sys.argv) < 2 or sys.argv[1] == '-h' or sys.argv[1] == '--help' or sys.argv[1] not in COMMANDS):
@@ -233,6 +248,7 @@ def main():
     if not check_git_repo(os.getcwd()):
         print(f"{Colors.RED}are you sure you're in a git repository ?{Colors.END}")
         exit(0)
+    #get_user_conf()
     match (COMMANDS.index(arg) % (len(COMMANDS) / 2)):
         case 0:
             commit()
