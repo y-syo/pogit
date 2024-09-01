@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
     name='pogit',
-    version='0.5.0',
+    version='0.6.0',
     scripts=[
         'pogit'
     ],

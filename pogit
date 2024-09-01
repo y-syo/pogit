@@ -14,13 +14,14 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
 
 import sys
 import os
+import tomllib
 
 # ------------ help messages ------------
 
@@ -102,19 +103,32 @@ class Help:
 
 COMMANDS = ["commit", "push", "help", "--version", "c", "p", "h", "-v"]
 
-C_TYPES = {"feature": "「✨」 feat",
-           "feat": "「✨」 feat",
-           "clean": "「🗑️」 clean",
-           "init": "「🎉」 init",
-           "norm": "「✏️」 norm",
-           "test": "「🚧」 test",
-           "wip": "「🏗️」 wip",
-           "fix": "「🔨」 fix",
-           "doc": "「📝」 doc"}
 
-default_commit_msg = {"feature": "added a very cool feature !",
+# ------------ default settings ------------
+
+commit_format = "「%i」 %t%d: %m"
+
+C_TYPES = ["clean",
+           "feat",
+           "init",
+           "norm",
+           "test",
+           "wip",
+           "fix",
+           "doc"]
+
+C_ICONS = {"clean": "🗑️",
+           "feat": "✨",
+           "init": "🎉",
+           "norm": "✏️ ",
+           "test": "🚧",
+           "wip": "🏗️",
+           "fix": "🔨",
+           "doc": "📝"}
+
+
+default_commit_msg = {"clean" : "cleaned project.",
                       "feat": "added a very cool feature !",
-                      "clean" : "cleaned project.",
                       "init" : "hello world !",
                       "norm" : "normed project.",
                       "test" : "testing things, might broke.",
@@ -140,7 +154,7 @@ def commit():
         args.pop(args.index("-f") + 1)
         args.pop(args.index("-f"))
     if "-d" in args:
-        c_denom = args[args.index("-d") + 1]
+        c_denom = f'({args[args.index("-d") + 1]})'
         args.pop(args.index("-d") + 1)
         args.pop(args.index("-d"))
 
@@ -148,14 +162,20 @@ def commit():
         c_msg = default_commit_msg[c_type]
     else:
         c_msg = ' '.join(args[3:])
-
     if (c_type not in C_TYPES):
         print("Error: type is not valid.")
         exit(0)
+    '''
     c_final += C_TYPES[c_type]
     if (c_denom):
         c_final += ("(" + c_denom + ")")
     c_final += (": " + c_msg)
+    '''
+    c_final = commit_format
+    c_final = c_final.replace('%i', C_ICONS[c_type])
+    c_final = c_final.replace('%t', c_type)
+    c_final = c_final.replace('%d', c_denom)
+    c_final = c_final.replace('%m', c_msg)
     if files:
         #print(f'git add {files}')
         os.system(f'git add {files}')
@@ -171,9 +191,6 @@ def get_git_repo(dir):
         dir = os.getcwd()
 
 def remote_list():
-    #remotes = os.listdir(os.getcwd() + "/.git/refs/remotes")
-    #for remote in remotes:
-    #    print(remote)
     file = open(get_git_repo(os.getcwd()) + "/.git/config")
     remotes=[]
     for line in file:
@@ -220,9 +237,26 @@ def get_user_conf():
     if "pogit" not in os.listdir(conf_dir):
         return
     os.close(conf_dir)
-    conf_file = open(conf_path + '/pogit/pogit.conf')
-    for line in conf_file:
-        print(line)
+    conf_file = open(conf_path + '/pogit/pogit.toml', 'rb')
+    if not conf_file:
+        return
+    data = tomllib.load(conf_file)
+    data_keys = list(data.keys())
+    if 'format' in data_keys:
+        global commit_format
+        commit_format = data['format']
+        data_keys.remove('format')
+    if data_keys:
+        global C_TYPES
+        global C_ICONS
+        global default_commit_msg
+        C_TYPES = []
+        C_ICONS = dict()
+        default_commit_msg = dict()
+        for key in data_keys:
+            C_TYPES.append(key)
+            C_ICONS[key] = data[key]['icon']
+            default_commit_msg[key] = data[key]['msg']
 
 
 # ------------ main function ------------
@@ -248,15 +282,13 @@ def main():
     if not check_git_repo(os.getcwd()):
         print(f"{Colors.RED}are you sure you're in a git repository ?{Colors.END}")
         exit(0)
-    #get_user_conf()
+    get_user_conf()
     match (COMMANDS.index(arg) % (len(COMMANDS) / 2)):
         case 0:
             commit()
         case 1:
-            remote()
-        case 2:
             push()
-        case 3:
+        case 2:
             man()
         case _:
             print(Help.pogit)
