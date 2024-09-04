@@ -14,7 +14,7 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.6.0"
+__version__ = "0.6.1"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -81,14 +81,14 @@ class Help:
 {Colors.BLUE}TYPE:{Colors.END}
   what's this commit about.
 
-    {Colors.GREEN}feature/feat:{Colors.END}  「✨」 feat(_): added a very cool feature !
-    {Colors.GREEN}clean:{Colors.END}         「🗑️」 clean(_): cleaned project.
-    {Colors.GREEN}init:{Colors.END}          「🎉」 init(_): hello world !
-    {Colors.GREEN}norm:{Colors.END}          「✏️」 norm(_): normed project.
-    {Colors.GREEN}test:{Colors.END}          「🚧」 test(_): testing things, might broke.
-    {Colors.GREEN}wip:{Colors.END}           「🏗️」 wip(_): work in progress, not done yet.
-    {Colors.GREEN}fix:{Colors.END}           「🔨」 fix(_): fixed some things.
-    {Colors.GREEN}doc:{Colors.END}           「📝」 doc(_): added documentation.
+    {Colors.GREEN}clean:{Colors.END}    「🗑️」 clean(_): cleaned project.
+    {Colors.GREEN}feat:{Colors.END}     「✨」 feat(_): added a very cool feature !
+    {Colors.GREEN}init:{Colors.END}     「🎉」 init(_): hello world !
+    {Colors.GREEN}norm:{Colors.END}     「✏️」 norm(_): normed project.
+    {Colors.GREEN}test:{Colors.END}     「🚧」 test(_): testing things, might broke.
+    {Colors.GREEN}wip:{Colors.END}      「🏗️」 wip(_): work in progress, not done yet.
+    {Colors.GREEN}fix:{Colors.END}      「🔨」 fix(_): fixed some things.
+    {Colors.GREEN}doc:{Colors.END}      「📝」 doc(_): added documentation.
 
 {Colors.BLUE}OPTIONS:{Colors.END}
   {Colors.GREEN}-f <files>{Colors.END}       which files should be inclued with the commit, by default, nothing will be staged.
@@ -120,7 +120,7 @@ C_TYPES = ["clean",
 C_ICONS = {"clean": "🗑️",
            "feat": "✨",
            "init": "🎉",
-           "norm": "✏️ ",
+           "norm": "✏️",
            "test": "🚧",
            "wip": "🏗️",
            "fix": "🔨",
@@ -229,6 +229,26 @@ def man():
 
 # ------------ config function ------------
 
+def check_data(data):
+    data_keys = list(data.keys())
+    for i in range(len(data_keys)):
+        for y in range(len(data_keys) - i - 1):
+            if data_keys[i] == data_keys[y + i + 1]:
+                print(f'{Colors.RED}duplicate key found in the config file.{Colors.END}')
+                return -1
+    if 'format' in data_keys:
+        data_keys.remove('format')
+    for key in data_keys:
+        if not isinstance(data[key], dict):
+            print(f'{Colors.RED}{key} is wrongly formatted and shouldn\'t be there.{Colors.END}')
+            return -1
+        commit_keys = list(data[key].keys())
+        if 'icon' not in commit_keys or 'msg' not in commit_keys:
+            print(f'{Colors.RED}{key} is missformatted : {('msg', 'icon')['icon' not in commit_keys]} is missing{Colors.END}')
+            return -1
+    return False
+
+
 def get_user_conf():
     conf_path = os.environ.get('XDG_CONFIG_HOME')
     if conf_path == None:
@@ -240,7 +260,14 @@ def get_user_conf():
     conf_file = open(conf_path + '/pogit/pogit.toml', 'rb')
     if not conf_file:
         return
-    data = tomllib.load(conf_file)
+    try:
+        data = tomllib.load(conf_file)
+    except:
+        print(f'{Colors.RED}can\'t parse the toml config file, user configuration will be ignored.{Colors.END}')
+        return
+    if check_data(data):
+        print(f'{Colors.RED}found an error in the config file, user configuration will be ignored.{Colors.END}')
+        return
     data_keys = list(data.keys())
     if 'format' in data_keys:
         global commit_format
