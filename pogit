@@ -14,7 +14,7 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.6.1"
+__version__ = "0.6.2"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -244,7 +244,7 @@ def check_data(data):
             return -1
         commit_keys = list(data[key].keys())
         if 'icon' not in commit_keys or 'msg' not in commit_keys:
-            print(f'{Colors.RED}{key} is missformatted : {('msg', 'icon')['icon' not in commit_keys]} is missing{Colors.END}')
+            print(f'{Colors.RED}{key} is missformatted : {("msg", "icon")["icon" not in commit_keys]} is missing{Colors.END}')
             return -1
     return False
 
