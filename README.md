@@ -44,6 +44,64 @@ I'll make an installer later (maybe (probably not i'm too lazy hehe (i love pare
 
 For the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
 
+### nix 
+
+#### nix profile
+
+```bash
+nix profile install github:y-syo/pogit#default
+```
+
+#### system packages
+
+flake.nix
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/release24.05";
+    pogit = {
+      url = "github:y-syo/pogit";
+      inputs.nixpkgs.follows = "nixpkgs" # to use your nixpkgs instance instead of the provided one
+    };
+    ...
+  };
+}
+```
+
+configuration.nix
+```nix
+{ pkgs, inputs, ...}:
+{
+  environment.systemPackages = [
+    inputs.pogit.packages.${pkgs.system}.default
+  ];
+}
+```
+
+#### with home-manager module
+
+```nix
+{ inputs, ... }:
+{
+  imports = [
+    # Importing the module to have access to options.
+    inputs.pogit.homeManagerModules.default
+  ];
+
+  programs.pogit = {
+    enable = true;
+    #package = inputs.pogit.packages.${pkgs.system}.pogit; # Default package can be changed here.
+    config = {
+      format = "TODO"; # To format the text
+      custom-commit-name = {
+        icon = "🐶";
+        default_msg = "a default message.";
+      };
+    };
+  };
+}
+```
+
 ## license
 
 This project is published under the Do What The F\*ck You Want Public License.
