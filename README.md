@@ -31,18 +31,18 @@ it also helps you working with multiples remotes at once.
 
   - push to multiple remotes easily !
 
-  - 
+  - an optional config file to change the formatting and tweak (documentation about this config file is coming soon)
 
 upcomming features:
-  - an optional config file to change the formatting and tweak some future options like a norm check
+  - some future options like a norm check, 
   - a 42norm checking that puts a warning flag when you commit not-normed code
   - remote managing
 
 ## install
 
-I'll make an installer later (maybe (probably not i'm too lazy hehe (i love parenthesis))).
+i'll make an installer later (maybe (probably not i'm too lazy hehe (i love parenthesis))).
 
-For the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
+for the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
 
 ### nix 
 
@@ -84,15 +84,15 @@ configuration.nix
 { inputs, ... }:
 {
   imports = [
-    # Importing the module to have access to options.
+    # importing the module to have access to options.
     inputs.pogit.homeManagerModules.default
   ];
 
   programs.pogit = {
     enable = true;
-    #package = inputs.pogit.packages.${pkgs.system}.pogit; # Default package can be changed here.
+    #package = inputs.pogit.packages.${pkgs.system}.pogit; # default package can be changed here.
     config = {
-      format = "TODO"; # To format the text
+      format = "TODO"; # to format the text
       custom-commit-name = {
         icon = "🐶";
         default_msg = "a default message.";
