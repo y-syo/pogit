@@ -40,9 +40,10 @@ upcomming features:
 
 ## install
 
-i'll make an installer later (maybe (probably not i'm too lazy hehe (i love parenthesis))).
-
-for the moment, move the ``pogit`` somewhere that is in your ``PATH``, or add the folder where ``pogit`` is located in your ``PATH``.
+### via pip
+```
+pip install git+https://github.com/y-syo/pogit
+```
 
 ### nix 
 
