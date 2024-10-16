@@ -1,20 +1,25 @@
-#!/usr/bin/env python3
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    pogit                                              :+:      :+:    :+:    #
+#    pogit.py                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 13:58:26 by mmoussou          #+#    #+#              #
-#    Updated: 2024/02/16 13:58:26 by mmoussou         ###   ########.fr        #
+#    Updated: 2024/10/16 20:07:34 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+#!/usr/bin/env python3
 
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__version__ = "0.6.2"
+__maintainer__ = ["y-syo"
+    # Windows support
+    "KeyZox71"
+    # Nix support
+    "sh-koh"]
+__version__ = "0.6.3"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -22,6 +27,7 @@ __license__ = "WTFPL"
 import sys
 import os
 import tomllib
+import platform
 
 # ------------ help messages ------------
 
@@ -248,6 +254,30 @@ def check_data(data):
 
 
 def get_user_conf():
+    #If on Linux try in XDG_CONFIG_HOME or in HOME/.config if don't exist just don't load the config file
+    if platform.system() == 'Linux':
+        try:
+            conf_file = os.open(os.getenv('XDG_CONFIG_HOME') + 'pogit/pogit.toml','rb')
+        except:
+            try:
+                conf_file = os.open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
+            except:
+                return
+    #If on Windows try in LOCALAPPDATA or in USERPROFILE/.config if don't exist just don't load the config file
+    elif platform.system() == 'Windows':
+        try:
+            conf_file = os.open(os.getenv('LOCALAPPDATA') + '\\pogit\\pogit.toml', 'rb')
+        except:
+            try:
+                conf_file = os.open(os.getenv('USERPROFILE') + '\\.config\\pogit\\pogit.toml', 'rb')
+            except:
+                return
+    #If on MacOS try in HOME/.config if don't exist just don't load the config file
+    elif platform.system() == 'Darwin':
+        try:
+            conf_file = os.open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
+        except:
+            return
     conf_path = os.environ.get('XDG_CONFIG_HOME')
     if conf_path == None:
         conf_path = os.environ.get('HOME') + "/.config"
@@ -291,13 +321,13 @@ def get_user_conf():
 # ------------ main function ------------
 
 def check_git_repo(dir):
-    while (dir != "/"):
+    root_dir = os.path.splitdrive(os.path.abspath( os.getcwd() ))[0] + os.sep
+    while (dir != root_dir):
         if (".git" in os.listdir(dir)):
             return True
         os.chdir('..')
         dir = os.getcwd()
     return False
-
 
 def main():
     if (len(sys.argv) < 2 or sys.argv[1] == '-h' or sys.argv[1] == '--help' or sys.argv[1] not in COMMANDS):
