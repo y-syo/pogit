@@ -6,7 +6,7 @@
 #    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 13:58:26 by mmoussou          #+#    #+#              #
-#    Updated: 2024/10/15 17:33:55 by adjoly           ###   ########.fr        #
+#    Updated: 2024/10/16 20:07:34 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/usr/bin/env python3
@@ -254,7 +254,6 @@ def check_data(data):
 
 
 def get_user_conf():
-<<<<<<< HEAD:pogit.py
     #If on Linux try in XDG_CONFIG_HOME or in HOME/.config if don't exist just don't load the config file
     if platform.system() == 'Linux':
         try:
@@ -279,7 +278,6 @@ def get_user_conf():
             conf_file = os.open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
         except:
             return
-=======
     conf_path = os.environ.get('XDG_CONFIG_HOME')
     if conf_path == None:
         conf_path = os.environ.get('HOME') + "/.config"
@@ -294,7 +292,6 @@ def get_user_conf():
     conf_file = open(conf_path + '/pogit/pogit.toml', 'rb')
     if not conf_file:
         return
->>>>>>> 6f3ec7670e844e8ddbae86c03a44c9e6cb1e2ebd:pogit
     try:
         data = tomllib.load(conf_file)
     except:
