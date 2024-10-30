@@ -103,6 +103,10 @@ configuration.nix
 }
 ```
 
+## commit guideline
+
+pogit has a [commit guideline](https://github.com/y-syo/pogit/wiki/Commit-guideline) that you can use for all your project :tada:
+
 ## license
 
 This project is published under the Do What The F\*ck You Want Public License.
