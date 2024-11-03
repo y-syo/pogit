@@ -1,4 +1,5 @@
-self: {
+self:
+{
   config,
   lib,
   pkgs,
@@ -21,7 +22,7 @@ in
     };
     config = mkOption {
       type = nullOr tomlFormat.type;
-      default = { }; 
+      default = { };
       description = ''
         Add custom commits to extend pogit.
       '';
