@@ -6,7 +6,7 @@
 #    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 13:58:26 by mmoussou          #+#    #+#              #
-#    Updated: 2024/10/16 20:07:34 by adjoly           ###   ########.fr        #
+#    Updated: 2024/12/01 20:26:32 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/usr/bin/env python3
@@ -225,8 +225,6 @@ def man():
             print(Help.commit)
         case 1:
             print(Help.push)
-        case 2:
-            print(Help.init)
         case _:
             print(Help.pogit)
 
@@ -309,9 +307,6 @@ def get_user_conf():
         global C_TYPES
         global C_ICONS
         global default_commit_msg
-        C_TYPES = []
-        C_ICONS = dict()
-        default_commit_msg = dict()
         for key in data_keys:
             C_TYPES.append(key)
             C_ICONS[key] = data[key]['icon']
