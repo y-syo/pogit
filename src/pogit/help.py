@@ -6,9 +6,11 @@
 #    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 17:06:51 by adjoly            #+#    #+#              #
-#    Updated: 2024/12/05 17:07:35 by adjoly           ###   ########.fr        #
+#    Updated: 2024/12/05 17:33:04 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+import sys
 
 from pogit.colors import Colors
 
@@ -59,3 +61,14 @@ class Help:
   If no message is given, there will be a default message.
 '''
 
+def man():
+    if (len(sys.argv) != 3 or sys.argv[2] not in COMMANDS):
+        print(Help.pogit)
+        exit(0)
+    match (COMMANDS.index(sys.argv[2]) % (len(COMMANDS) / 2)):
+        case 0:
+            print(Help.commit)
+        case 1:
+            print(Help.push)
+        case _:
+            print(Help.pogit)
