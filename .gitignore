@@ -1,2 +1,7 @@
 result
 .direnv
+
+# Python things
+*.egg-info
+build/
+dist/

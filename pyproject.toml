@@ -1,0 +1,39 @@
+[build-system]
+requires = [
+	"wheel",
+	"setuptools-scm[toml]>=8.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pogit"
+version = "0.7"
+description = "🌸 a git wrapper for cute commits."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+	{ name="y-syo" },
+	{ name="KeyZox" },
+	{ name="sh-koh" }
+]
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"Operating System :: OS Independent"
+]
+keywords = ["git", "cli", "tool"]
+
+[project.scripts]
+pogit = "pogit:main"
+
+[tool.poetry]
+package-mode = true
+name = "pogit"
+version = "0.7"
+description = "🌸 a git wrapper for cute commits."
+authors = [
+	"y-syo"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"

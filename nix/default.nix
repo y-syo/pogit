@@ -1,11 +1,12 @@
 {
   python3,
   git,
+  poetry,
   ...
 }:
 python3.pkgs.buildPythonApplication {
   name = "pogit";
-  version = "0.6.2";
+  version = "0.7";
   src = ../.;
-  nativeBuildInputs = [ git ];
+  nativeBuildInputs = [ poetry git ];
 }

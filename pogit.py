@@ -6,7 +6,7 @@
 #    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 13:58:26 by mmoussou          #+#    #+#              #
-#    Updated: 2024/12/01 20:26:32 by mmoussou         ###   ########.fr        #
+#    Updated: 2024/12/05 13:40:03 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/usr/bin/env python3
@@ -14,12 +14,14 @@
 # ------------ credits ------------
 
 __author__ = "y-syo"
-__maintainer__ = ["y-syo"
-    # Windows support
+__maintainer__ = [
+    # Creator main developer
+    "y-syo"
+    # Windows support && developer
     "KeyZox71"
     # Nix support
     "sh-koh"]
-__version__ = "0.6.3"
+__version__ = "0.7"
 __license__ = "WTFPL"
 
 # ------------ modules ------------
@@ -28,6 +30,9 @@ import sys
 import os
 import tomllib
 import platform
+
+# -------- local modules ----------
+
 
 # ------------ help messages ------------
 
