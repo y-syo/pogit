@@ -6,7 +6,7 @@
 #    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 14:36:41 by adjoly            #+#    #+#              #
-#    Updated: 2024/12/05 14:38:36 by adjoly           ###   ########.fr        #
+#    Updated: 2024/12/05 16:59:10 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ __maintainer__ = [
     # Windows support && developer
     "KeyZox71"
     # Nix support
-    "sh-koh"]
+    "sh-koh"
+]
 __version__ = "0.7"
 __license__ = "WTFPL"
