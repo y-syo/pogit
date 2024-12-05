@@ -1,13 +1,13 @@
 [build-system]
 requires = [
-	"wheel",
-	"setuptools-scm[toml]>=8.0",
+	"setuptools>=42",
+	"wheel"
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pogit"
-dynamicly = [ "version" ]
+dynamic = [ "version" ]
 description = "🌸 a git wrapper for cute commits."
 requires-python = ">=3.11"
 readme = "README.md"
@@ -24,18 +24,9 @@ classifiers = [
 keywords = ["git", "cli", "tool"]
 
 [project.scripts]
-pogit = "pogit:main"
+pogit = "pogit.__main__:main"
 
-[tool.poetry]
-package-mode = true
-name = "pogit"
-version = "0.7"
-description = "🌸 a git wrapper for cute commits."
-authors = [
-	"y-syo"
-	"KeyZox"
-	"sh-koh"
-]
-
-[tool.poetry.dependencies]
-python = "^3.11"
+[tool.setuptools.packages.find]
+where = [ "src" ]
+include = [ "pogit" ]
+exclude = [ "nix" ]
