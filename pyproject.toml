@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pogit"
-version = "0.7"
+dynamicly = [ "version" ]
 description = "🌸 a git wrapper for cute commits."
 requires-python = ">=3.11"
 readme = "README.md"
@@ -33,6 +33,8 @@ version = "0.7"
 description = "🌸 a git wrapper for cute commits."
 authors = [
 	"y-syo"
+	"KeyZox"
+	"sh-koh"
 ]
 
 [tool.poetry.dependencies]
