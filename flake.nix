@@ -18,7 +18,16 @@
         { self', pkgs, ... }:
         {
           formatter = pkgs.nixfmt-rfc-style;
-          devShells.default = pkgs.mkShell { packages = self'.packages.pogit.nativeBuildInputs; };
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              self'.packages.pogit.nativeBuildInputs
+              python312
+              python312Packages.pip
+              python312Packages.build
+              python312Packages.wheel
+              python312Packages.setuptools
+            ];
+          };
 
           packages = {
             default = self'.packages.pogit;

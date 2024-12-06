@@ -1,0 +1,32 @@
+[build-system]
+requires = [
+	"setuptools>=42",
+	"wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pogit"
+dynamic = [ "version" ]
+description = "🌸 a git wrapper for cute commits."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+	{ name="y-syo" },
+	{ name="KeyZox" },
+	{ name="sh-koh" }
+]
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"Operating System :: OS Independent"
+]
+keywords = ["git", "cli", "tool"]
+
+[project.scripts]
+pogit = "pogit.__main__:main"
+
+[tool.setuptools.packages.find]
+where = [ "src" ]
+include = [ "pogit" ]
+exclude = [ "nix" ]

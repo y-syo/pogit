@@ -1,11 +1,16 @@
 {
-  python3,
+  python3Packages,
   git,
   ...
 }:
-python3.pkgs.buildPythonApplication {
+python3Packages.buildPythonApplication {
   name = "pogit";
-  version = "0.6.2";
+  version = "0.7";
   src = ../.;
-  nativeBuildInputs = [ git ];
+  nativeBuildInputs = [
+    git
+  ];
+  build-system = with python3Packages; [
+    setuptools
+  ];
 }
