@@ -6,12 +6,15 @@
 #    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 17:03:41 by adjoly            #+#    #+#              #
-#    Updated: 2024/12/05 17:18:12 by adjoly           ###   ########.fr        #
+#    Updated: 2025/01/28 21:27:36 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import platform
 import os
+import tomllib
+from pogit.colors import Colors
+from pogit.const import C_TYPES, C_ICONS, default_commit_msg, commit_format
 
 def check_data(data):
     data_keys = list(data.keys())
@@ -36,41 +39,27 @@ def get_user_conf():
     #If on Linux try in XDG_CONFIG_HOME or in HOME/.config if don't exist just don't load the config file
     if platform.system() == 'Linux':
         try:
-            conf_file = os.open(os.getenv('XDG_CONFIG_HOME') + 'pogit/pogit.toml','rb')
+            conf_file = open(os.getenv('XDG_CONFIG_HOME') + '/pogit/pogit.toml', 'rb')
         except:
             try:
-                conf_file = os.open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
+                conf_file = open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
             except:
                 return
     #If on Windows try in LOCALAPPDATA or in USERPROFILE/.config if don't exist just don't load the config file
     elif platform.system() == 'Windows':
         try:
-            conf_file = os.open(os.getenv('LOCALAPPDATA') + '\\pogit\\pogit.toml', 'rb')
+            conf_file = open(os.getenv('LOCALAPPDATA') + '\\pogit\\pogit.toml', 'rb')
         except:
             try:
-                conf_file = os.open(os.getenv('USERPROFILE') + '\\.config\\pogit\\pogit.toml', 'rb')
+                conf_file = open(os.getenv('USERPROFILE') + '\\.config\\pogit\\pogit.toml', 'rb')
             except:
                 return
     #If on MacOS try in HOME/.config if don't exist just don't load the config file
     elif platform.system() == 'Darwin':
         try:
-            conf_file = os.open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
+            conf_file = open(os.getenv('HOME') + '/.config/pogit/pogit.toml', 'rb')
         except:
             return
-    conf_path = os.environ.get('XDG_CONFIG_HOME')
-    if conf_path == None:
-        conf_path = os.environ.get('HOME') + "/.config"
-    conf_dir = os.open(conf_path, os.O_RDONLY)
-    if "pogit" not in os.listdir(conf_dir):
-        return
-    os.close(conf_dir)
-    conf_dir = os.open(conf_path + "/pogit", os.O_RDONLY)
-    if "pogit" not in os.listdir(conf_dir):
-        return
-    os.close(conf_dir)
-    conf_file = open(conf_path + '/pogit/pogit.toml', 'rb')
-    if not conf_file:
-        return
     try:
         data = tomllib.load(conf_file)
     except:
