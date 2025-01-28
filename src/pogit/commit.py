@@ -6,7 +6,7 @@
 #    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 17:21:53 by adjoly            #+#    #+#              #
-#    Updated: 2024/12/05 17:26:38 by adjoly           ###   ########.fr        #
+#    Updated: 2025/01/28 21:47:45 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ from pogit.const import C_TYPES, C_ICONS, default_commit_msg, commit_format
 
 def commit():
     if len(sys.argv) < 3 or sys.argv[2] not in C_TYPES:
-        print(Help.commit)
+        print(Help.man(0))
         exit(0)
     c_type = sys.argv[2]
     c_denom = ""
