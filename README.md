@@ -9,34 +9,9 @@
 
 it also helps you working with multiples remotes at once.
 
-## features
+## documentation
 
-  - cool emojis and prefix to show what's the commit about:
-
-    feature:  「✨」 feat(\_): added a very cool feature !
-
-    clean:    「🗑️」 clean(\_): cleaned project.
-
-    init:     「🎉」 init(\_): hello world !
-
-    norm:     「✏️」 norm(\_): normed project.
-
-    test:     「🚧」 test(\_): testing things, might broke.
-
-    wip:      「🏗️」 wip(\_): work in progress, not done yet.
-
-    fix:      「🔨」 fix(\_): fixed some things.
-
-    doc:      「📝」 doc(\_): added documentation.
-
-  - push to multiple remotes easily !
-
-  - an optional config file to change the formatting and tweak (documentation about this config file is coming soon)
-
-upcomming features:
-  - some future options like a norm check, 
-  - a 42norm checking that puts a warning flag when you commit not-normed code
-  - remote managing
+check the [wiki](https://github.com/y-syo/pogit/wiki) (wip, not actually there for now but we're working on it, trust me pls)
 
 ## install
 
