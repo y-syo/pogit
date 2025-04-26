@@ -6,7 +6,7 @@
 #    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 13:58:26 by mmoussou          #+#    #+#              #
-#    Updated: 2025/01/28 21:58:07 by mmoussou         ###   ########.fr        #
+#    Updated: 2025/04/26 18:03:02 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ import os
 # -------- local modules ----------
 
 from pogit.push import push
-from pogit.commit import commit
-from pogit.const import COMMANDS
 from pogit.help import Help
+from pogit.commit import commit
+from pogit.colors import Colors
+from pogit.const import COMMANDS
 from pogit.__init__ import __version__
 from pogit.config import get_user_conf
 from pogit.gitRepo import check_git_repo, get_git_repo
