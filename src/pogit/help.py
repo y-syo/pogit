@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    help.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
+#    By: mmoussou <mmoussou@student.42angouleme.fr  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 17:06:51 by adjoly            #+#    #+#              #
-#    Updated: 2025/01/28 21:51:24 by mmoussou         ###   ########.fr        #
+#    Updated: 2025/05/26 13:36:54 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ class Help:
 {Colors.BLUE}OPTIONS:{Colors.END}
   {Colors.GREEN}-f <files>{Colors.END}       which files should be inclued with the commit, by default, nothing will be staged.
   {Colors.GREEN}-d <denominator>{Colors.END} a prefix for the commit to point out what's the subject of the commit.
+  {Colors.GREEN}-p{Colors.END} print the message in the standard output instead of creating a commit.
 
 {Colors.BLUE}MESSAGE:{Colors.END}
   More precise description of the commit.
