@@ -6,7 +6,7 @@
 #    By: adjoly <adjoly@student.42angouleme.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/05 14:36:41 by adjoly            #+#    #+#              #
-#    Updated: 2024/12/05 16:59:10 by adjoly           ###   ########.fr        #
+#    Updated: 2025/05/26 09:40:19 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,5 +21,5 @@ __maintainer__ = [
     # Nix support
     "sh-koh"
 ]
-__version__ = "0.7"
+__version__ = "0.7.1"
 __license__ = "WTFPL"
