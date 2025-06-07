@@ -71,7 +71,7 @@ configuration.nix
       format = "TODO"; # to format the text
       custom-commit-name = {
         icon = "🐶";
-        default_msg = "a default message.";
+        msg = "a default message.";
       };
     };
   };
