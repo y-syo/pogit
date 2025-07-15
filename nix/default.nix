@@ -7,6 +7,7 @@ python3Packages.buildPythonApplication {
   name = "pogit";
   version = "0.7";
   src = ../.;
+  pyproject = true;
   nativeBuildInputs = [
     git
   ];
