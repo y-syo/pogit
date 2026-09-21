@@ -61,7 +61,7 @@ class Help:
 {Colors.BLUE}OPTIONS:{Colors.END}
   {Colors.GREEN}-f <files>{Colors.END}       which files should be inclued with the commit, by default, nothing will be staged.
   {Colors.GREEN}-d <denominator>{Colors.END} a prefix for the commit to point out what's the subject of the commit.
-  {Colors.GREEN}-p{Colors.END} print the message in the standard output instead of creating a commit.
+  {Colors.GREEN}-p{Colors.END}               print the message in the standard output instead of creating a commit.
 
 {Colors.BLUE}MESSAGE:{Colors.END}
   More precise description of the commit.
